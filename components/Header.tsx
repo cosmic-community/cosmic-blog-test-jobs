@@ -29,6 +29,13 @@ export default function Header() {
           >
             Authors
           </Link>
+          {/* Changed: Added About link to navigation */}
+          <Link
+            href="/about"
+            className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            About
+          </Link>
         </nav>
       </div>
     </header>

@@ -30,6 +30,13 @@ export default function Footer() {
             >
               Authors
             </Link>
+            {/* Changed: Added About link to footer navigation */}
+            <Link
+              href="/about"
+              className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+            >
+              About
+            </Link>
           </nav>
         </div>
         <div className="mt-8 pt-8 border-t border-gray-200 text-center">
