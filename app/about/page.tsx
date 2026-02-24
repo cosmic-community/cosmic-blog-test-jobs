@@ -1,6 +1,7 @@
 import { getPageBySlug, getAuthors } from '@/lib/cosmic'
 import { Metadata } from 'next'
 import Link from 'next/link'
+import type { Author } from '@/types'
 
 export const metadata: Metadata = {
   title: 'About - Cosmic Blog',
@@ -43,7 +44,7 @@ export default async function AboutPage() {
         {page?.metadata?.content && (
           <div className="max-w-3xl mx-auto">
             <div className="prose prose-lg prose-gray max-w-none">
-              {page.metadata.content.split('\n\n').map((paragraph, index) => {
+              {page.metadata.content.split('\n\n').map((paragraph: string, index: number) => {
                 const trimmed = paragraph.trim()
                 if (!trimmed) return null
 
@@ -66,10 +67,10 @@ export default async function AboutPage() {
 
                 // Handle markdown lists
                 if (trimmed.startsWith('- ')) {
-                  const items = trimmed.split('\n').filter((line) => line.startsWith('- '))
+                  const items = trimmed.split('\n').filter((line: string) => line.startsWith('- '))
                   return (
                     <ul key={index} className="list-disc list-inside space-y-2 text-gray-600 leading-relaxed">
-                      {items.map((item, i) => (
+                      {items.map((item: string, i: number) => (
                         <li key={i}>{item.replace('- ', '')}</li>
                       ))}
                     </ul>
@@ -80,7 +81,7 @@ export default async function AboutPage() {
                 const parts = trimmed.split(/(\*\*[^*]+\*\*)/g)
                 return (
                   <p key={index} className="text-gray-600 leading-relaxed mb-4">
-                    {parts.map((part, i) => {
+                    {parts.map((part: string, i: number) => {
                       if (part.startsWith('**') && part.endsWith('**')) {
                         return (
                           <strong key={i} className="font-semibold text-gray-900">
@@ -119,7 +120,7 @@ export default async function AboutPage() {
             Meet Our Writers
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-            {authors.map((author) => (
+            {authors.map((author: Author) => (
               <Link
                 key={author.id}
                 href={`/authors/${author.slug}`}
